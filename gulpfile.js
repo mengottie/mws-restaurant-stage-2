@@ -9,15 +9,15 @@ var uglify = require('gulp-uglify');
 var paths = {
   srcHtml: 'client/*.html',
   srcJs: 'client/js/main/*.js',
-  srcSw: '',
-  srcSass: '',
+  srcSw: 'client/js/sw/*.js',
+  srcSass: 'client/sass/**/*.scss',
   destHtml: 'client/dist',
   destJs: 'client/dist/js',
   destSw: 'client/dist',
-  destCss: 'client/css'
+  destCss: 'client/dist/css'
 };
 
-gulp.task('default', ['copy-html', 'copy-images', 'styles', 'lint'], function () {
+gulp.task('default', ['copy-html', 'copy-js', 'styles'], function () {
   gulp.watch(paths.srcSass, ['styles']);
   gulp.watch(paths.srcHtml, ['copy-html']);
   gulp.watch(paths.srcJs, ['copy-js']);
