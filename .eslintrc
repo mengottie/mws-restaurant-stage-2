@@ -1,21 +1,23 @@
-{
-    "rules": {
-        "env": {
-            "browser": true,
-            "es6": true,
-            "node": true
-        },
-        "indent": [
-            2,
-            2
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-        "semi": [
-            2,
-            "always"
-        ]
-    }
+{"parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+      "env": {
+          "browser": true,
+          "es6": true,
+          "node": true
+      },
+      "indent": [
+          2,
+          2
+      ],
+      "quotes": [
+          2,
+          "single"
+      ],
+      "semi": [
+          2,
+          "always"
+      ]
+  }
 }
