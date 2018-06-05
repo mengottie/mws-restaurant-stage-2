@@ -7,14 +7,16 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 var paths = {
-  srcHtml: 'client/*.html',
+  srcHtml: ['client/*.html','client/*.json'],
   srcJs: ['client/js/main/*.js','node_modules/idb/lib/idb.js'],
   srcSw: 'client/js/sw/*.js',
   srcSass: 'client/sass/**/*.scss',
+  srcIcons: 'client/img-src/icons/*.png',
   destHtml: 'client/dist',
   destJs: 'client/dist/js',
   destSw: 'client/dist',
-  destCss: 'client/dist/css'
+  destCss: 'client/dist/css',
+  destIcons: 'client/dist/img/icons'
 };
 
 gulp.task('default', ['copy-html', 'copy-js', 'styles'], function () {
@@ -28,6 +30,7 @@ gulp.task('dist', [
   'copy-html',
   'copy-js',
   'copy-sw',
+  'copy-icons',
   'styles'
 ]);
 
@@ -44,6 +47,11 @@ gulp.task('copy-js', function () {
 gulp.task('copy-sw', function () {
   gulp.src(paths.srcSw)
     .pipe(gulp.dest(paths.destSw));
+});
+
+gulp.task('copy-icons', function () {
+  gulp.src(paths.srcIcons)
+    .pipe(gulp.dest(paths.destIcons));
 });
 
 gulp.task('styles', function () {
