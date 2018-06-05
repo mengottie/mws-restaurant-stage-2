@@ -8,7 +8,7 @@ var uglify = require('gulp-uglify');
 
 var paths = {
   srcHtml: 'client/*.html',
-  srcJs: 'client/js/main/*.js',
+  srcJs: ['client/js/main/*.js','node_modules/idb/lib/idb.js'],
   srcSw: 'client/js/sw/*.js',
   srcSass: 'client/sass/**/*.scss',
   destHtml: 'client/dist',
