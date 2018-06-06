@@ -5,18 +5,19 @@ var eslint = require('gulp-eslint');
 var jasmine = require('gulp-jasmine-phantom');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+require('gulp-grunt')(gulp);
 
 var paths = {
-  srcHtml: ['client/*.html','client/*.json'],
-  srcJs: ['client/js/main/*.js','node_modules/idb/lib/idb.js'],
-  srcSw: 'client/js/sw/*.js',
-  srcSass: 'client/sass/**/*.scss',
-  srcIcons: 'client/img-src/icons/*.png',
-  destHtml: 'client/dist',
-  destJs: 'client/dist/js',
-  destSw: 'client/dist',
-  destCss: 'client/dist/css',
-  destIcons: 'client/dist/img/icons'
+  srcHtml: ['*.html','manifest.json'],
+  srcJs: ['js/main/*.js','node_modules/idb/lib/idb.js'],
+  srcSw: 'js/sw/*.js',
+  srcSass: 'sass/**/*.scss',
+  srcIcons: 'img-src/icons/*.png',
+  destHtml: 'dist',
+  destJs: 'dist/js',
+  destSw: 'dist',
+  destCss: 'dist/css',
+  destIcons: 'dist/img/icons'
 };
 
 gulp.task('default', ['copy-html', 'copy-js', 'styles'], function () {
@@ -27,10 +28,10 @@ gulp.task('default', ['copy-html', 'copy-js', 'styles'], function () {
 });
 
 gulp.task('dist', [
+  'gruntify',
   'copy-html',
   'copy-js',
   'copy-sw',
-  'copy-icons',
   'styles'
 ]);
 
@@ -49,10 +50,12 @@ gulp.task('copy-sw', function () {
     .pipe(gulp.dest(paths.destSw));
 });
 
-gulp.task('copy-icons', function () {
-  gulp.src(paths.srcIcons)
-    .pipe(gulp.dest(paths.destIcons));
-});
+gulp.task('gruntify',[
+  'grunt-clean',
+  'grunt-mkdir',
+  'grunt-copy',
+  'grunt-responsive_images'
+]);
 
 gulp.task('styles', function () {
   gulp.src(paths.srcSass)
