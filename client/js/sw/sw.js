@@ -8,6 +8,7 @@ self.addEventListener('install', function (event) {
       return cache.addAll([
         'index.html',
         'restaurant.html',
+        'manifest.json',
         'css/styles.css',
         'js/main.js',
         'js/restaurant_info.js',
